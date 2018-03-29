@@ -1,3 +1,20 @@
 <html>
     <title>Vote</title>
+    <body>
+        <form method="POST" >
+             One Number: <input name="name_quiz" id="id_quiz" placeholder="Enter a question"/>
+        </br>        
+        <input type="submit" name="sub_bt" value="subBT"/>
+        {% csrf_token %}             
+        </form>
+        
+        Question :
+        {% for item in question %}
+            <form method="POST" action="{{ question.id }}/">
+            {{forloop.counter}}:<a href="{{ question.id }}/">{{ item.post_text }}</a>
+            {% csrf_token %}
+            </form>
+        {% endfor %}
+    </body>
+
 </html>
