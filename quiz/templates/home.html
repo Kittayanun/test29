@@ -10,8 +10,8 @@
         
         Question :
         {% for item in question %}
-            <form method="POST" action="{{ question.id }}/">
-            {{forloop.counter}}:<a href="{{ question.id }}/">{{ item.post_text }}</a>
+            <form method="POST" action="{{ item.id }}/">
+            {{forloop.counter}}:<a href="{{ item.id }}/">{{ item.post_text }}</a>
             {% csrf_token %}
             </form>
         {% endfor %}

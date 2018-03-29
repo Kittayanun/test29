@@ -11,8 +11,9 @@ def home_page(request):
     #return render(request, 'home.html')
 
 def detail(request, question__id):
-    #items = Topic.objects.get(id=item_id)
-    return HttpResponse("You're looking at question %s." % question_id)
+    question = Topic.objects.get(id=question__id)
+    return render(request, 'detail.html', {'question': question})
+    #return HttpResponse("You're looking at question %s." % question_id)
 
 def results(request, question__id):
     response = "You're looking at the results of question %s."
