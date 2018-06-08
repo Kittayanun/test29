@@ -3,12 +3,17 @@ from quiz.models import Topic, Choice
 
 # Create your views here.
 def home_page(request):
-    if request.method == 'POST':
-        Topic.objects.create(post_text=request.POST['name_quiz'])
-        return redirect('/')
     question = Topic.objects.all()
     return render(request, 'home.html', {'question': question})
     #return render(request, 'home.html')
+
+#create question
+def create_quiz(request):
+    if request.method == 'POST':
+        Topic.objects.create(post_text=request.POST['name_quiz'],
+            ans=request.POST['choice'])
+        return redirect('/')
+    return render(request, 'create.html')
 
 def detail(request, question__id):
     question = Topic.objects.get(id=question__id)

@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 class Topic(models.Model):
     post_text = models.TextField(default='')
+    ans = models.TextField(default='')
 
 class Choice(models.Model):
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
