@@ -1,9 +1,19 @@
 <html>
 <title>Detail</title>
-    <body>    
+    <body>  
+
+        </br>
+        {{ question.post_text }}
+        </br>
+
+        <form method="POST" action="/{{question.id}}/vote/">
             
-            <center><H1>{{ question.post_text }}</H1>
-            </center>
- 
+            {% csrf_token %}
+            {% for choice in question.choice_set.all %}
+                <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+                <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+            {% endfor %}
+            <input type="submit" value="Vote" />
+        </form>
     </body>
 </html>

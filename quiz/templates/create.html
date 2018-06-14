@@ -2,13 +2,13 @@
     <title>Create Question</title>
 
     <body>
-        <form method="POST" >
+        <form method="POST">
             Question : <input name="name_quiz" id="id_quiz" placeholder="Enter a question"/>
             </br> 
 
-            <input type="radio" name="choice" value="true">True </br>
-            <input type="radio" name="choice" value="false">False </br>
-            
+            <input type="radio" name="choice" id="true" value="true">True </br>
+            <input type="radio" name="choice" id="false" value="false">False </br>
+                        
             <input type="submit" name="sub_bt" value="subBT"/>
             {% csrf_token %}             
         </form>

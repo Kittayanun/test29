@@ -7,11 +7,11 @@
         value="Create Question">
         </br>
         </br>
-        
+
         Question :</br>
         {% for item in question %}
             <form method="POST" action="{{ item.id }}/">
-            {{forloop.counter}}:<a href="{{ item.id }}/">{{ item.post_text }}</a>
+            {{forloop.counter}}:<a href="/{{ item.id }}/">{{ item.post_text }}</a>
             {% csrf_token %}
             </form>
         {% endfor %}
