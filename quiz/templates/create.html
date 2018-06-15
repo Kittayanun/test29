@@ -3,11 +3,14 @@
 
     <body>
         <form method="POST">
-            Question : <input name="name_quiz" id="id_quiz" placeholder="Enter a question"/>
-            </br> 
+            Question : <input name="name_quiz" id="id_quiz" placeholder="Enter a question"/></br>
+            </br>
 
-            <input type="radio" name="choice" id="true" value="true">True </br>
-            <input type="radio" name="choice" id="false" value="false">False </br>
+            <ul>
+            <input type="radio" name="choice" id="true" value="True">True </br>
+            <input type="radio" name="choice" id="false" value="False">False </br>
+            </br>
+            </ul>
                         
             <input type="submit" name="sub_bt" value="subBT"/>
             {% csrf_token %}             

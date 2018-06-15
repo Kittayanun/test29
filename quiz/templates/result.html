@@ -6,9 +6,19 @@
         {{ question.post_text }}
         </br>
 
+        ผลการโหวตทั้งหมด :</br>
         <ul>
         {% for choice in question.choice_set.all %}
             <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+        {% endfor %}
+        </ul>
+        </br>
+        </br>
+
+        ผลรวมคำตอบ :</br>
+        <ul>
+        {% for answerResult in question.answer_set.all %}
+            <li>{{ answerResult.ans_text }} -- {{ answerResult.ans_vote }} vote{{ answerResult.ans_vote|pluralize }}</li>
         {% endfor %}
         </ul>
 
