@@ -3,7 +3,8 @@
     <body>  
 
         </br>
-        {{ question.post_text }}
+        Question : {{ question.post_text }}
+        </br>
         </br>
 
         ผลการโหวตทั้งหมด :</br>
@@ -15,7 +16,7 @@
         </br>
         </br>
 
-        ผลรวมคำตอบ :</br>
+        ผลรวมคำตอบ (ตอบถูก/ตอบผิด) :</br>
         <ul>
         {% for answerResult in question.answer_set.all %}
             <li>{{ answerResult.ans_text }} -- {{ answerResult.ans_vote }} vote{{ answerResult.ans_vote|pluralize }}</li>

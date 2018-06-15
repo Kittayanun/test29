@@ -2,19 +2,26 @@
     <title>Create Question</title>
 
     <body>
+        </br>
         <form method="POST">
             Question : <input name="name_quiz" id="id_quiz" placeholder="Enter a question"/></br>
             </br>
 
+            Select correct answer :</br>
             <ul>
             <input type="radio" name="choice" id="true" value="True">True </br>
             <input type="radio" name="choice" id="false" value="False">False </br>
             </br>
             </ul>
                         
-            <input type="submit" name="sub_bt" value="subBT"/>
+            <input type="submit" name="sub_bt" value="Submit"/>
             {% csrf_token %}             
         </form>
+
+        {% if error_message %}
+            <h3><strong>{{ error_message }}</strong></h3>
+        {% endif %}
+
      </body>
 
 </html>

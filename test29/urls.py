@@ -19,7 +19,7 @@ from quiz import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.home_page, name="homepage"),
+    path('',views.home_page, name="home_page"),
     path('create/', views.create_quiz, name="create_quiz"),
     path('<int:question_id>/',views.detail, name="detail"),
     path('<int:question_id>/results/', views.results, name='results'),

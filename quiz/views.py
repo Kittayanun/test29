@@ -11,31 +11,46 @@ def home_page(request):
 
 #create question
 def create_quiz(request):
-    if request.method == 'POST':
-        #create Question
-        Q = Topic(post_text=request.POST['name_quiz'],
-            ans=request.POST['choice'])
-        Q.save()
-
-        #create choice
-        choice_1 = Choice(choice_text='True',
-            topic=Q, votes='0')
-        choice_2 = Choice(choice_text='False',
-            topic=Q, votes='0')
-        choice_1.save()
-        choice_2.save()
-
-        #create Correct,Uncorrect answer
-        Correct_ans = Answer(ans_text='Correct',
-            topic=Q, ans_vote='0')
-        Uncorrect_ans = Answer(ans_text='Uncorrect',
-            topic=Q, ans_vote='0')
-        Correct_ans.save()
-        Uncorrect_ans.save()
-
-        return redirect('/')
     
-    return render(request, 'create.html')
+    try:
+        if request.method == 'POST':
+            #create Question
+            Q = Topic(post_text=request.POST['name_quiz'],
+                ans=request.POST['choice'])
+            Q.save()
+
+            #create choice
+            choice_1 = Choice(choice_text='True',
+                topic=Q, votes='0')
+            choice_2 = Choice(choice_text='False',
+                topic=Q, votes='0')
+            choice_1.save()
+            choice_2.save()
+
+            #create Correct,Uncorrect answer
+            Correct_ans = Answer(ans_text='Correct',
+                topic=Q, ans_vote='0')
+            Uncorrect_ans = Answer(ans_text='Uncorrect',
+                topic=Q, ans_vote='0')
+            Correct_ans.save()
+            Uncorrect_ans.save()
+            return redirect('/')
+    
+        return render(request, 'create.html')
+
+    except (KeyError):
+        return render(request, 'create.html', {
+            'error_message' : "You didn't select correct answer. Please select correct answer."
+            })
+    
+            
+        
+        
+
+        #return HttpResponseRedirect(reverse('home_page'))
+
+            #
+        #return render(request, 'create.html')
 
 
 #Show detail of Topic
@@ -64,7 +79,7 @@ def vote(request, question_id):
     except (KeyError, Choice.DoesNotExist):
         return render(request, 'detail.html', {
             'question' : question,
-            'error_message' : "You didn't select a choice."
+            'error_message' : "You didn't select a choice. Please select choice."
             })
     else:
         selected_choice.votes += 1

@@ -3,23 +3,28 @@
     <body>  
 
         </br>
-        {{ question.post_text }}
+        Question : {{ question.post_text }}
         </br>
-
-        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        </br>
 
         <form method="POST" action="/{{question.id}}/vote/">
             
             {% csrf_token %}
 
+            Select Choice :</br>
             <ul>
             {% for choice in question.choice_set.all %}
                 <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
                 <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
             {% endfor %}
             </ul>
-            
+
             <input type="submit" value="Vote" />
         </form>
+
+        {% if error_message %}
+            <h3><strong>{{ error_message }}</strong></h3>
+        {% endif %}
+
     </body>
 </html>
