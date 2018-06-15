@@ -117,4 +117,3 @@ class TopicModelTest(TestCase):
 
         quiz2_first_saved_answer = ans_quiz2[0].ans_text
         self.assertEqual(quiz2_first_saved_answer, 'The first answer for the second question')
-
