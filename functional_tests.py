@@ -76,7 +76,7 @@ class NewVisitorTest(unittest.TestCase):
 
     # หลังจากกดโหวต จะเปลี่ยนไปที่หน้าแสดงผงโหวต
       check_url_result = self.browser.current_url
-      self.assertRegex(check_url_result, '/1/results/')
+      self.assertRegex(check_url_result, '/1/You%20Answered%20Correctly./results/')
     # เห็น title 'Result'
       self.assertIn('Result',self.browser.title)
       time.sleep(5)
@@ -103,7 +103,7 @@ class NewVisitorTest(unittest.TestCase):
 
     # หลังจากกดโหวต จะเปลี่ยนไปที่หน้าแสดงผงโหวต
       check_url_result = self.browser.current_url
-      self.assertRegex(check_url_result, '/1/results/')
+      self.assertRegex(check_url_result, '/1/You%20Answered%20Uncorrectly./results/')
     # เห็น title 'Result'
       self.assertIn('Result',self.browser.title)
       time.sleep(5)

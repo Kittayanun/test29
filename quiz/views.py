@@ -42,15 +42,6 @@ def create_quiz(request):
         return render(request, 'create.html', {
             'error_message' : "You didn't select correct answer. Please select correct answer."
             })
-    
-            
-        
-        
-
-        #return HttpResponseRedirect(reverse('home_page'))
-
-            #
-        #return render(request, 'create.html')
 
 
 #Show detail of Topic
@@ -61,9 +52,10 @@ def detail(request, question_id):
     #return HttpResponse("You're looking at question %s." % question_id)
 
 #แสดงผลโหวตและมีปุ่มกลับไปโหวตใหม่และไปที่หน้า home
-def results(request, question_id):
+def results(request, question_id, message_of_answer):
     question = get_object_or_404(Topic, pk=question_id)
-    return render(request, 'result.html', {'question' : question})
+    ans_message = message_of_answer
+    return render(request, 'result.html', {'question' : question, 'ans_message' : ans_message})
 
 #ฟังก์ชันสำหรับโหวต เมื่อกดโหวตแล้วจะ redirect ไปที่หน้าแสดงผลโหวต
 def vote(request, question_id):
@@ -87,7 +79,10 @@ def vote(request, question_id):
         if correct_ans_forQuiz == selected_choice.choice_text:
             ans_correct.ans_vote += 1
             ans_correct.save()
+            message_of_answer = 'You Answered Correctly.'
+            return HttpResponseRedirect(reverse('results', args=(question.id, message_of_answer)))
         elif correct_ans_forQuiz != selected_choice.choice_text:
             ans_uncorrect.ans_vote += 1
             ans_uncorrect.save()
-        return HttpResponseRedirect(reverse('results', args=(question.id,)))
+            message_of_answer = 'You Answered Uncorrectly.'
+            return HttpResponseRedirect(reverse('results', args=(question.id, message_of_answer)))
