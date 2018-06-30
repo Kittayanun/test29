@@ -14,7 +14,7 @@ class NewVisitorTest(unittest.TestCase):
  
   # Bob has heard about web application 'Vote'.
   # He goes to check out its homepage
-  # nut saw the title name 'Vote'
+  # he saw the title name 'Question--Homepage'
   def test_can_start_a_list_and_retrieve_it_later(self):
       self.browser.get('http://localhost:8000')
       self.assertIn('Question--Homepage', self.browser.title)
@@ -31,7 +31,7 @@ class NewVisitorTest(unittest.TestCase):
       check_url_createQuiz = self.browser.current_url
       self.assertRegex(check_url_createQuiz, '/create/')
       time.sleep(3)
-    # Bob เห็นช่องสำหับใส่คำถามและ choice 'true', 'false' และปุ่ม Submit
+    # Bob เห็นช่องสำหรับใส่คำถามและ choice 'true', 'false' และปุ่ม Submit
       input_quiz = self.browser.find_element_by_name('name_quiz')
       self.assertEqual(input_quiz.get_attribute('placeholder'), 'Enter a question')
 
@@ -59,7 +59,7 @@ class NewVisitorTest(unittest.TestCase):
       show_quiz = self.browser.find_element_by_link_text('นกมีเขา?')
       show_quiz.click()
 
-    # หลังจากกดที่คำถามจะเปลี่ยนไปที่หน้าที่ใหเโหวตคำตอบ
+    # หลังจากกดที่คำถามจะเปลี่ยนไปที่หน้าที่ให้โหวตคำตอบ
       check_url_detail = self.browser.current_url
       self.assertRegex(check_url_detail, '/1/')
     # เห็น title 'Detail'
@@ -74,7 +74,7 @@ class NewVisitorTest(unittest.TestCase):
       self.assertEqual(vote_button.get_attribute('value'), 'Vote')
       vote_button.click()
 
-    # หลังจากกดโหวต จะเปลี่ยนไปที่หน้าแสดงผงโหวต
+    # หลังจากกดโหวต จะเปลี่ยนไปที่หน้าแสดงผลโหวต
       check_url_result = self.browser.current_url
       self.assertRegex(check_url_result, '/1/You%20Answered%20Correctly./results/')
     # เห็น title 'Result'
@@ -87,21 +87,21 @@ class NewVisitorTest(unittest.TestCase):
 
 
     # จะเห็นว่ากลับมาที่หน้าสำหรับโหวตอีกครั้ง
-      check_url_detail = self.browser.current_url
-      self.assertRegex(check_url_detail, '/1/')
+      check_url_detail_again = self.browser.current_url
+      self.assertRegex(check_url_detail_again, '/1/')
     # เห็น title 'Detail'
       self.assertIn('Detail', self.browser.title)
       time.sleep(2)
     # เลือก choice 'True'
-      select_false_answer = self.browser.find_element_by_id('choice1')
-      select_false_answer.click()
+      select_true_answer = self.browser.find_element_by_id('choice1')
+      select_true_answer.click()
       time.sleep(2)
     # กดปุ่ม vote
-      vote_button = self.browser.find_element_by_name('vote_bt')
-      self.assertEqual(vote_button.get_attribute('value'), 'Vote')
-      vote_button.click()
+      vote_button_again = self.browser.find_element_by_name('vote_bt')
+      self.assertEqual(vote_button_again.get_attribute('value'), 'Vote')
+      vote_button_again.click()
 
-    # หลังจากกดโหวต จะเปลี่ยนไปที่หน้าแสดงผงโหวต
+    # หลังจากกดโหวต จะเปลี่ยนไปที่หน้าแสดงผลโหวต
       check_url_result = self.browser.current_url
       self.assertRegex(check_url_result, '/1/You%20Answered%20Uncorrectly./results/')
     # เห็น title 'Result'
